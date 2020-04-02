@@ -1,9 +1,26 @@
+const pepperButton = document.getElementById('pepper-btn')
+const caliopeButton = document.getElementById('caliope-btn')
+const akqButton = document.getElementById('akquinet-btn')
+const zwButton = document.getElementById('zw-btn')
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
+const menuButton = document.getElementById('menu-btn')
+const backButton = document.getElementById('back-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 
+pepperButton.addEventListener('click', hideStart)
+
+function hideStart(){
+    pepperButton.classList.add('hide')
+    caliopeButton.classList.add('hide')
+    akqButton.classList.add('hide')
+    zwButton.classList.add('hide')
+    startButton.innerText = 'Start'
+    startButton.classList.remove('hide')
+    backButton.classList.remove('hide')
+}
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
@@ -11,13 +28,27 @@ nextButton.addEventListener('click', () => {
   currentQuestionIndex++
   setNextQuestion()
 })
+menuButton.addEventListener('click', menu)
+backButton.addEventListener('click', menu)
 
 function startGame() {
   startButton.classList.add('hide')
+  backButton.classList.add('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
+}
+function menu(){
+    resetState()
+    pepperButton.classList.remove('hide')
+    caliopeButton.classList.remove('hide')
+    akqButton.classList.remove('hide')
+    zwButton.classList.remove('hide')
+    startButton.classList.add('hide')
+    menuButton.classList.add('hide')
+    backButton.classList.add('hide')
+    questionContainerElement.classList.add('hide')
 }
 
 function setNextQuestion() {
@@ -57,8 +88,9 @@ function selectAnswer(e) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
   } else {
-    startButton.innerText = 'Neustart'
+    startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
+    menuButton.classList.remove('hide')
   }
 }
 
