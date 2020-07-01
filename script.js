@@ -1,5 +1,5 @@
 const pepperButton = document.getElementById('pepper-btn')
-const caliopeButton = document.getElementById('caliope-btn')
+const  calliopeButton = document.getElementById(' calliope-btn')
 const akqButton = document.getElementById('akquinet-btn')
 const zwButton = document.getElementById('zw-btn')
 const startButton = document.getElementById('start-btn')
@@ -9,40 +9,239 @@ const backButton = document.getElementById('back-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
+var questions
+//Initialisierung der Fragen -- HIER NEUE FRAGEN HINZUFÜGEN --
+const questionsQ1 = [
+  {
+      question: "Wie heißen Peppers Freunde?",
+      answers: [
+          {text: "Miau und Wuff", correct: false},
+          {text: "Nao und Romeo", correct: true},
+          {text: "Adam und Eva", correct: false},
+          {text: "Wladimir und Vitali", correct: false}
+      ]
+  },
+  {
+      question: "Wo ist die Zukunftswerkstatt?",
+      answers: [
+          {text: "Hamburg", correct: true},
+          {text: "Buchholz", correct: true},
+          {text: "Hier", correct: true},
+          {text: "Auf dem Mond", correct: false}
+      ]
+  },
+  {
+      question: "Kann Pepper Tanzen?",
+      answers: [
+          {text: "Nein", correct: false},
+          {text: "Ja", correct: true}
+      ]
+  },
+  {
+      question: "Was ist 2 * 4?",
+      answers: [
+          {text: "6", correct: false},
+          {text: "8", correct: true},
+          {text: "7", correct: false}
+      ]
+  }
+]
+const questionsQ2 = [
+{
+    question: "Was ist Calliope?",
+    answers: [
+        {text: "Miau und Wuff", correct: false},
+        {text: "Nao und Romeo", correct: true},
+        {text: "Adam und Eva", correct: false},
+        {text: "Wladimir und Vitali", correct: false}
+    ]
+},
+{
+    question: "In welcher Sprache kann man Calliope programmieren?",
+    answers: [
+        {text: "ABAP", correct: false},
+        {text: "Python", correct: true},
+        {text: "Cobol", correct: false}, 
+    ]
+},
+{
+    question: "Wie sieht Calliope aus?",
+    answers: [
+        {text: "Wie ein Vogel", correct: false},
+        {text: "Wie ein Stern", correct: true},
+        {text: "Wie ein Playmobilhaus", correct: false}, 
+    ]
+},
+{
+    question: "Was lernt man mit Calliope?",
+    answers: [
+        {text: "Spielerisch programmieren", correct: true},
+        {text: "Laufen", correct: false},
+        {text: "Zähne putzen", correct: false}, 
+    ]
+},
+{
+    question: "Was ist Calliope?",
+    answers: [
+        {text: "Ein Stern", correct: false},
+        {text: "Ein Mikrocomputer", correct: true},
+        {text: "Ein Programm", correct: false}, 
+    ]
+}
+]
+const questionsQ3 = [
+{
+    question: "Was ist Akquinet?",
+    answers: [
+        {text: "Ein Fußballverein", correct: false},
+        {text: "Ein IT Dienstleistungsunternehmen", correct: true},
+        {text: "Eine Lerneinrichtung für Programmierer", correct: false},
+        {text: "Ein Schiff", correct: false}
+    ]
+},
+{
+    question: "Was macht Akquinet in der zukunftswerkstatt?",
+    answers: [
+        {text: "Workshops zu 3D Druck geben", correct: false},
+        {text: "Workshops zu Drohnen geben", correct: false},
+        {text: "Pepper programmieren", correct: true},
+        {text: "Bilder malen", correct: false},
+    ]
+},
+{
+    question: "Was wollen die Azubis von Akquinet werden?",
+    answers: [
+        {text: "Luft- und Raumfahrttechniker", correct: false},
+        {text: "Roboterchirugen", correct: false},
+        {text: "Anwendungsentwickler", correct: true},
+        {text: "Spieleentwickler", correct: false}, 
+    ]
+},
+{
+    question: "Wie viele Mitarbeiter hat Akquinet?",
+    answers: [
+        {text: "ca. 1400", correct: false},
+        {text: "ca. 1100", correct: false},
+        {text: "ca. 850", correct: true},
+        {text: "ca. 350", correct: false}, 
+    ]
+},
+{
+    question: "Wofür steht der Name Akquinet?",
+    answers: [
+        {text: "Komplizierte Buchstabenkombinationen", correct: false},
+        {text: "Akquise und Netzwerk", correct: true},
+        {text: "HSV", correct: false}, 
+    ]
+}
+]
+const questionsQ4 = [
+{
+    question: "Wofür steht MINT?",
+    answers: [
+        {text: "Pfefferminz", correct: false},
+        {text: "Mathematik, Informatik, Naturwissenschaften und Technik", correct: true},
+        {text: "Die Farbe bei Mastermind", correct: false},
+        {text: "Mathe ist natürlich toll", correct: false}
+    ]
+},
+{
+    question: "Kann man in der zukunftswerkstatt 3D-Drucken?",
+    answers: [
+        {text: "Nein", correct: false},
+        {text: "Ja", correct: true},
+        {text: "Weiß ich nicht ob du das kannst", correct: false}, 
+    ]
+},
+{
+    question: "Test?",
+    answers: [
+        {text: "Test", correct: false},
+        {text: "Test", correct: true},
+        {text: "Test", correct: false}, 
+    ]
+},
+{
+    question: "Was ist sees?",
+    answers: [
+      {text: "Test", correct: false},
+      {text: "Test", correct: true},
+      {text: "Test", correct: false}, 
+    ]
+},
+{
+    question: "Was ist soos?",
+    answers: [
+      {text: "Test", correct: false},
+      {text: "Test", correct: true},
+      {text: "Test", correct: false}, 
+    ]
+}
+]
+//Den Buttons werden clickbar gemacht, die Funktion hideStart wird ausgeführt und den Themen werden die Fragengruppen zugewiesen
+pepperButton.addEventListener('click', pepper)
+ calliopeButton.addEventListener('click', calliope)
+akqButton.addEventListener('click', akq)
+/zwButton.addEventListener('click', zkw)
+menuButton.addEventListener('click', menu)
+backButton.addEventListener('click', menu)
 
-pepperButton.addEventListener('click', hideStart)
+//Zuweisung der Fragen nach Themen, bessere Lösung steht noch aus
+function pepper(){
+  hideStart()
+  questions = questionsQ1
+  countPoints = 0
+}
+function calliope(){
+  hideStart()
+  questions = questionsQ2
+  countPoints = 0
+}
+function akq(){
+  hideStart()
+  questions = questionsQ3
+  countPoints = 0
+}
+function zkw(){
+  hideStart()
+  questions = questionsQ4
+  countPoints = 0
+}
 
+//Der Start wird angezeigt und die Themenübersicht verdeckt
 function hideStart(){
     pepperButton.classList.add('hide')
-    caliopeButton.classList.add('hide')
+     calliopeButton.classList.add('hide')
     akqButton.classList.add('hide')
     zwButton.classList.add('hide')
     startButton.innerText = 'Start'
     startButton.classList.remove('hide')
     backButton.classList.remove('hide')
 }
-let shuffledQuestions, currentQuestionIndex
 
+//Start wird angezeigt und der nextButton bekommt eine Funktion 
+let shuffledQuestions, currentQuestionIndex
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
   currentQuestionIndex++
-  setNextQuestion()
+  setNextQuestion() //
 })
-menuButton.addEventListener('click', menu)
-backButton.addEventListener('click', menu)
 
+//Start wird ausgeführt, Fragen werden geshuffelt und angezeigt
 function startGame() {
   startButton.classList.add('hide')
   backButton.classList.add('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
+  
   questionContainerElement.classList.remove('hide')
-  setNextQuestion()
+  setNextQuestion() //
 }
+//Das "Hauptmenü" wird angezeigt
 function menu(){
     resetState()
     pepperButton.classList.remove('hide')
-    caliopeButton.classList.remove('hide')
+    calliopeButton.classList.remove('hide')
     akqButton.classList.remove('hide')
     zwButton.classList.remove('hide')
     startButton.classList.add('hide')
@@ -51,11 +250,12 @@ function menu(){
     questionContainerElement.classList.add('hide')
 }
 
+//Aktuelle Frage wird aus Liste entfernt und die nächste Frage gezeigt
 function setNextQuestion() {
   resetState()
   showQuestion(shuffledQuestions[currentQuestionIndex])
 }
-
+//Antworten werden als Button dargestellt, Frage als Text, selectAnswer wird ausgeführt
 function showQuestion(question) {
   questionElement.innerText = question.question
   question.answers.forEach(answer => {
@@ -64,12 +264,13 @@ function showQuestion(question) {
     button.classList.add('btn')
     if (answer.correct) {
       button.dataset.correct = answer.correct
+      
     }
     button.addEventListener('click', selectAnswer)
     answerButtonsElement.appendChild(button)
   })
 }
-
+//Frage wird aus aktiver Frageliste entfernt
 function resetState() {
   clearStatusClass(document.body)
   nextButton.classList.add('hide')
@@ -77,23 +278,38 @@ function resetState() {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild)
   }
 }
-
+//Korrektheit wird geprüft und angezeigt, Anzahl übriger Fragen wird geprüft
+//und dementsprechend Next oder Retart/Menü angezeigt
 function selectAnswer(e) {
   const selectedButton = e.target
   const correct = selectedButton.dataset.correct
   setStatusClass(document.body, correct)
+  if (selectedButton.dataset.correct){
+    countPoints +1
+  }
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
   })
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
   } else {
-    startButton.innerText = 'Restart'
-    startButton.classList.remove('hide')
-    menuButton.classList.remove('hide')
+    showResults()
+    //startButton.innerText = 'Restart'
+    //startButton.classList.remove('hide')
+    //menuButton.classList.remove('hide')
   }
 }
+//Ergebnisse anzeigen
+function showResults(){
+  questionContainerElement.classList.add('hide')
+  startButton.innerText = 'Restart'
+  startButton.classList.remove('hide')
+  menuButton.classList.remove('hide')
+  window.alert("Du hattest ", countPoints, " Fragen richtig.")
+  //count.innerText = count
+}
 
+//Korrektheitsstatus wird initialisiert
 function setStatusClass(element, correct) {
   clearStatusClass(element)
   if (correct) {
@@ -102,44 +318,12 @@ function setStatusClass(element, correct) {
     element.classList.add('wrong')
   }
 }
-
+//Korrektheitsstatus des Elements wird zurückgesetzt
 function clearStatusClass(element) {
   element.classList.remove('correct')
   element.classList.remove('wrong')
 }
 
-const questions = [
-    {
-        question: "Wie heißen Peppers Freunde?",
-        answers: [
-            {text: "Miau und Wuff", correct: false},
-            {text: "Nao und Romeo", correct: true},
-            {text: "Adam und Eva", correct: false},
-            {text: "Wladimir und Vitali", correct: false}
-        ]
-    },
-    {
-        question: "Wo ist die Zukunftswerkstatt?",
-        answers: [
-            {text: "Hamburg", correct: true},
-            {text: "Buchholz", correct: true},
-            {text: "Hier", correct: true},
-            {text: "Auf dem Mond", correct: false}
-        ]
-    },
-    {
-        question: "Kann Pepper Tanzen?",
-        answers: [
-            {text: "Nein", correct: false},
-            {text: "Ja", correct: true}
-        ]
-    },
-    {
-        question: "Was ist 2 * 4?",
-        answers: [
-            {text: "6", correct: false},
-            {text: "8", correct: true},
-            {text: "7", correct: false}
-        ]
-    }
-]
+//Anzahl der richtigen Fragen wird angezeigt
+//function score
+//

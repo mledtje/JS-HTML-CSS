@@ -4,13 +4,14 @@
 }
 
 :root {
-  --hue-neutral: 200;
+  --hue-neutral: 194;
   --hue-wrong: 0;
   --hue-correct: 145;
+  --hue-zkw: 67;
 }
 
 body {
-  --hue: var(--hue-neutral);
+  --hue: var(--hue-zkw);
   padding: 0;
   margin: 0;
   display: flex;
@@ -18,7 +19,7 @@ body {
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: hsl(var(--hue), 100%, 20%);
+  background-color: hsl(var(--hue), 100%, 40%);
 }
 
 body.correct {
@@ -68,15 +69,17 @@ body.wrong {
   --hue: var(--hue-wrong);
 }
 
-.start-btn, .next-btn, .pepper-btn, .caliope-btn, .akquinet-btn, .zw-btn, .menu-btn, .back-btn {
+.start-btn, .next-btn, .pepper-btn, .calliope-btn, .akquinet-btn, .zw-btn, .menu-btn, .back-btn {
   font-size: 1.5rem;
   font-weight: bold;
   padding: 10px 20px;
   margin: 5px;
+  
 }
 
 .controls {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
   justify-content: center;
   align-items: center;
 }
