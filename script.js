@@ -1,5 +1,6 @@
+//Load aus index
 const pepperButton = document.getElementById('pepper-btn')
-const  calliopeButton = document.getElementById(' calliope-btn')
+const calliopeButton = document.getElementById(' calliope-btn')
 const akqButton = document.getElementById('akquinet-btn')
 const zwButton = document.getElementById('zw-btn')
 const startButton = document.getElementById('start-btn')
@@ -10,6 +11,15 @@ const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 var questions
+
+//Die Buttons werden clickbar gemacht, die Funktion hideStart wird ausgeführt
+pepperButton.addEventListener('click', pepper)
+calliopeButton.addEventListener('click', calliope)
+akqButton.addEventListener('click', akq)
+zwButton.addEventListener('click', zkw)
+menuButton.addEventListener('click', menu)
+backButton.addEventListener('click', menu)
+
 //Initialisierung der Fragen -- HIER NEUE FRAGEN HINZUFÜGEN --
 const questionsQ1 = [
   {
@@ -26,7 +36,7 @@ const questionsQ1 = [
       answers: [
           {text: "Hamburg", correct: true},
           {text: "Buchholz", correct: true},
-          {text: "Hier", correct: true},
+          {text: "Atlantis", correct: false},
           {text: "Auf dem Mond", correct: false}
       ]
   },
@@ -41,6 +51,7 @@ const questionsQ1 = [
       question: "Was ist 2 * 4?",
       answers: [
           {text: "6", correct: false},
+          {text: "42", correct: false},
           {text: "8", correct: true},
           {text: "7", correct: false}
       ]
@@ -48,20 +59,12 @@ const questionsQ1 = [
 ]
 const questionsQ2 = [
 {
-    question: "Was ist Calliope?",
-    answers: [
-        {text: "Miau und Wuff", correct: false},
-        {text: "Nao und Romeo", correct: true},
-        {text: "Adam und Eva", correct: false},
-        {text: "Wladimir und Vitali", correct: false}
-    ]
-},
-{
     question: "In welcher Sprache kann man Calliope programmieren?",
     answers: [
         {text: "ABAP", correct: false},
         {text: "Python", correct: true},
-        {text: "Cobol", correct: false}, 
+        {text: "Cobol", correct: false},
+        {text: "WoW", correct: false}
     ]
 },
 {
@@ -69,7 +72,8 @@ const questionsQ2 = [
     answers: [
         {text: "Wie ein Vogel", correct: false},
         {text: "Wie ein Stern", correct: true},
-        {text: "Wie ein Playmobilhaus", correct: false}, 
+        {text: "Wie ein Playmobilhaus", correct: false},
+        {text: "Wie eine Maus", correct: false}
     ]
 },
 {
@@ -78,6 +82,7 @@ const questionsQ2 = [
         {text: "Spielerisch programmieren", correct: true},
         {text: "Laufen", correct: false},
         {text: "Zähne putzen", correct: false}, 
+        {text: "Lesen", correct: false}
     ]
 },
 {
@@ -85,7 +90,8 @@ const questionsQ2 = [
     answers: [
         {text: "Ein Stern", correct: false},
         {text: "Ein Mikrocomputer", correct: true},
-        {text: "Ein Programm", correct: false}, 
+        {text: "Ein Programm", correct: false},
+        {text: "Ein Lego-Set", correct: false}
     ]
 }
 ]
@@ -127,11 +133,12 @@ const questionsQ3 = [
     ]
 },
 {
-    question: "Wofür steht der Name Akquinet?",
+    question: "Wofür steht Akquinet?",
     answers: [
         {text: "Komplizierte Buchstabenkombinationen", correct: false},
         {text: "Akquise und Netzwerk", correct: true},
         {text: "HSV", correct: false}, 
+        {text: "Agilität", correct: true}
     ]
 }
 ]
@@ -142,76 +149,44 @@ const questionsQ4 = [
         {text: "Pfefferminz", correct: false},
         {text: "Mathematik, Informatik, Naturwissenschaften und Technik", correct: true},
         {text: "Die Farbe bei Mastermind", correct: false},
-        {text: "Mathe ist natürlich toll", correct: false}
+        {text: "Mathe Ist Natürlich Toll", correct: false}
     ]
 },
 {
     question: "Kann man in der zukunftswerkstatt 3D-Drucken?",
     answers: [
         {text: "Nein", correct: false},
-        {text: "Ja", correct: true},
-        {text: "Weiß ich nicht ob du das kannst", correct: false}, 
+        {text: "Ja", correct: true}
     ]
 },
-{
-    question: "Test?",
-    answers: [
-        {text: "Test", correct: false},
-        {text: "Test", correct: true},
-        {text: "Test", correct: false}, 
-    ]
-},
-{
-    question: "Was ist sees?",
-    answers: [
-      {text: "Test", correct: false},
-      {text: "Test", correct: true},
-      {text: "Test", correct: false}, 
-    ]
-},
-{
-    question: "Was ist soos?",
-    answers: [
-      {text: "Test", correct: false},
-      {text: "Test", correct: true},
-      {text: "Test", correct: false}, 
-    ]
-}
 ]
-//Den Buttons werden clickbar gemacht, die Funktion hideStart wird ausgeführt und den Themen werden die Fragengruppen zugewiesen
-pepperButton.addEventListener('click', pepper)
- calliopeButton.addEventListener('click', calliope)
-akqButton.addEventListener('click', akq)
-/zwButton.addEventListener('click', zkw)
-menuButton.addEventListener('click', menu)
-backButton.addEventListener('click', menu)
 
 //Zuweisung der Fragen nach Themen, bessere Lösung steht noch aus
 function pepper(){
   hideStart()
   questions = questionsQ1
-  countPoints = 0
+
 }
 function calliope(){
   hideStart()
   questions = questionsQ2
-  countPoints = 0
+  
 }
 function akq(){
   hideStart()
   questions = questionsQ3
-  countPoints = 0
+  
 }
 function zkw(){
   hideStart()
   questions = questionsQ4
-  countPoints = 0
+  
 }
 
 //Der Start wird angezeigt und die Themenübersicht verdeckt
 function hideStart(){
     pepperButton.classList.add('hide')
-     calliopeButton.classList.add('hide')
+    calliopeButton.classList.add('hide')
     akqButton.classList.add('hide')
     zwButton.classList.add('hide')
     startButton.innerText = 'Start'
@@ -264,7 +239,6 @@ function showQuestion(question) {
     button.classList.add('btn')
     if (answer.correct) {
       button.dataset.correct = answer.correct
-      
     }
     button.addEventListener('click', selectAnswer)
     answerButtonsElement.appendChild(button)
@@ -285,31 +259,32 @@ function selectAnswer(e) {
   const correct = selectedButton.dataset.correct
   setStatusClass(document.body, correct)
   if (selectedButton.dataset.correct){
-    countPoints +1
   }
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
   })
+  //Wenn noch Fragen übrig sind soll der Next-Button angezeigt werden
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
+  //Sind keine Fragen übrig werden der Start-Button unter Namen Restart
+  //und der Menü-Button angezeigt 
   } else {
-    showResults()
-    //startButton.innerText = 'Restart'
-    //startButton.classList.remove('hide')
-    //menuButton.classList.remove('hide')
+    //showResults()
+    startButton.innerText = 'Restart'
+    startButton.classList.remove('hide')
+    menuButton.classList.remove('hide')
   }
 }
-//Ergebnisse anzeigen
-function showResults(){
-  questionContainerElement.classList.add('hide')
-  startButton.innerText = 'Restart'
-  startButton.classList.remove('hide')
-  menuButton.classList.remove('hide')
-  window.alert("Du hattest ", countPoints, " Fragen richtig.")
-  //count.innerText = count
-}
+//Ergebnisse anzeigen - Noch nicht benötigt, da Counter fehlt
+//function showResults(){
+  //questionContainerElement.classList.add('hide')
+  //startButton.innerText = 'Restart'
+  //startButton.classList.remove('hide')
+  //menuButton.classList.remove('hide')
+  //window.alert("Du hattest ", countPoints, " Fragen richtig.")
+//}
 
-//Korrektheitsstatus wird initialisiert
+//Korrektheitsstatus wird Fragen hinzugefügt
 function setStatusClass(element, correct) {
   clearStatusClass(element)
   if (correct) {
@@ -323,7 +298,3 @@ function clearStatusClass(element) {
   element.classList.remove('correct')
   element.classList.remove('wrong')
 }
-
-//Anzahl der richtigen Fragen wird angezeigt
-//function score
-//
